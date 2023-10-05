@@ -1,4 +1,9 @@
 import { useEffect, useState } from "react";
+import InputText from "./components/input_text/InputText";
+import Button from "./components/button/Button";
+import styles from "./App.module.scss"
+import Cell from "./components/cell/Cell";
+import Sheet from "./components/sheet/Sheet";
 
 const wordsArray = [
   "Программа",
@@ -29,7 +34,7 @@ const wordsArray = [
   "Циркорама",
 ];
 
-const MAX_MISS = 10
+const MAX_MISS = 11
 let remainingMiss = MAX_MISS
 
 const randomWord = Array.from(wordsArray[Math.floor(Math.random() * wordsArray.length)].toLowerCase())
@@ -73,16 +78,27 @@ const App = () => {
   }, [remainingMiss, remainingLetters])
   
   return (
-    <div>
-      <div>Виселица!</div>
-      <div>Букв осталось отгадать: {remainingLetters}</div>
+    <div className={styles.container}>
+      <h1>Виселица!</h1>
+      <Sheet miss={remainingMiss}/>
+      <div className={styles.remaining_letters}>Осталось отгадать: {remainingLetters}</div>
+
+      {/* _________для тестов */}
       <div>{randomWord}</div>
-      <div>{answerArray}</div>
-      <form onSubmit={onConfirm}>
-        <input type="text" value={answer} maxLength={1} onChange={onChange}/>
-        <button type="submit">Проверить</button>
+      {/* _________для тестов */}
+
+      <div className={styles.answer_field}>
+        {answerArray.map((letter, index) => (
+          <div key={index}>
+            <Cell letter={letter}/>
+          </div>
+        ))}
+      </div>
+      <form onSubmit={onConfirm} className={styles.bottom}>
+        <InputText value={answer} maxLength={1} onChange={onChange}/>
+        <Button type="submit" description={'Проверить'}/>
       </form>
-      <div>Попыток: {remainingMiss} из {MAX_MISS}</div>
+      <div>Промохов осталось: {remainingMiss} из {MAX_MISS}</div>
       {loss && <h1>ПОРАЖЕНИЕ</h1>}
       {win && <h1>ПОБЕДА!!</h1>}
     </div>
