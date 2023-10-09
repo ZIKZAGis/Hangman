@@ -35,13 +35,15 @@ const wordsArray = [
 ];
 
 const MAX_MISS = 11
-let remainingMiss = MAX_MISS
+const getRandomWord = () => Array.from(wordsArray[Math.floor(Math.random() * wordsArray.length)].toLowerCase())
 
-const randomWord = Array.from(wordsArray[Math.floor(Math.random() * wordsArray.length)].toLowerCase())
-const answerArray = randomWord.map((i) => i = '_ ')
-let remainingLetters = randomWord.length
 
 const App = () => {
+  const [randomWord, setRandomWord] = useState(getRandomWord())
+  const [remainingLetters, setRemainingLetters] = useState(randomWord.length)
+  const [remainingMiss, setRemainingMiss] = useState(MAX_MISS)
+  const [answerArray, setAnswerArray] = useState(randomWord.map((i) => i = '_ '))
+
   const [answer, setAnswer] = useState('')
   const [win, setWin] = useState(false)
   const [loss, setLoss] = useState(false)
@@ -60,15 +62,24 @@ const App = () => {
         for (let j = 0; j < randomWord.length; j++) {
           if (randomWord[j] === answer.toLowerCase()) {
             answerArray[j] = answer.toLowerCase() + ' '
-            remainingLetters--        
+
+            setRemainingLetters(remainingLetters - 1)
           }
         }
       } else {
-        remainingMiss--
+        setRemainingMiss(remainingMiss - 1)
       }
 
       setAnswer('')
     }
+  }
+
+  const startNewGame = () => {
+    setRandomWord(getRandomWord())
+    setAnswerArray(randomWord.map((i) => i = '_ '))
+    setRemainingLetters(randomWord.length)
+    setRemainingMiss(MAX_MISS)
+    setAnswer('')
   }
 
   useEffect(() => {
@@ -99,6 +110,7 @@ const App = () => {
         <Button type="submit" description={'Проверить'}/>
       </form>
       <div>Промохов осталось: {remainingMiss} из {MAX_MISS}</div>
+      <Button type="button" description="Новое слово" onClick={startNewGame}/>
       {loss && <h1>ПОРАЖЕНИЕ</h1>}
       {win && <h1>ПОБЕДА!!</h1>}
     </div>
