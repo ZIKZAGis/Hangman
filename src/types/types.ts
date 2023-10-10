@@ -2,6 +2,7 @@ export type InputTextPropsType = {
     value: string
     onChange: (e: React.SyntheticEvent<HTMLInputElement>) => void
     maxLength: number
+    disabled?: boolean
 }
 
 export type ButtonPropsType = {
