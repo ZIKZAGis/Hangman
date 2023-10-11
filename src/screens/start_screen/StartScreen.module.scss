@@ -1,0 +1,48 @@
+@import 'src/variables';
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+
+    h1 {
+        font-size: 100px;
+        margin: 0;
+        text-transform: uppercase;
+        color: #261ac8;
+    }
+
+    img {
+        width: 60%;
+        height: auto;
+    }
+
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        border: none;
+        background-color: transparent;
+        font-size: 150px;
+        cursor: pointer;
+
+        svg path {
+            transition: $animation;
+            stroke: #ef5347;
+            fill: #261ac8;
+        }
+
+        &:hover svg path,
+        &:focus svg path,
+        &:active svg path {
+            stroke: darken(#ef5347, 8);
+            fill: darken(#261ac8, 8);
+            stroke-width: 2.5;
+        }
+    }
+}

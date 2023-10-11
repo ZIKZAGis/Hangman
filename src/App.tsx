@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import InputText from "./components/input_text/InputText";
-import Button from "./components/button/Button";
+import StartScreen from "./screens/start_screen/StartScreen";
 import styles from "./App.module.scss"
-import Cell from "./components/cell/Cell";
-import Sheet from "./components/sheet/Sheet";
+import GameScreen from "./screens/game_screen/GameScreen";
 
 const wordsArray = [
   "Программа",
@@ -34,7 +32,7 @@ const wordsArray = [
   "Циркорама",
 ];
 
-const MAX_MISS = 11
+const MAX_MISS = 7
 const getRandomWord = () => Array.from(wordsArray[Math.floor(Math.random() * wordsArray.length)].toLowerCase())
 
 const App = () => {
@@ -44,9 +42,27 @@ const App = () => {
   const [answerArray, setAnswerArray] = useState(randomWord.map((i) => i = '_ '))
   const [usedLetters, setUsedLetters] = useState('')
   const [answer, setAnswer] = useState('')
+  const [gamePoints, setGamePoints] = useState(0)
   const [win, setWin] = useState(false)
   const [loss, setLoss] = useState(false)
+  const [startGame, setStartGame] = useState(false)
 
+  useEffect(() => {
+    setAnswerArray(randomWord.map((i) => i = '_ '))
+    setRemainingLetters(randomWord.length)
+    setUsedLetters('')
+    setRemainingMiss(MAX_MISS)
+    setLoss(false)
+    setWin(false)
+    setAnswer('')
+  }, [randomWord])
+
+  useEffect(() => {
+    remainingMiss === 0 && setLoss(true)
+    remainingLetters === 0 && setWin(true)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [remainingMiss, remainingLetters])
+  
   const onChange = (e: React.SyntheticEvent<HTMLInputElement>) => {
     setAnswer(e.currentTarget.value)
   }
@@ -63,7 +79,7 @@ const App = () => {
           for (let j = 0; j < randomWord.length; j++) {
             if (randomWord[j] === answer.toLowerCase()) {
               answerArray[j] = answer.toLowerCase() + ' '
-              setRemainingLetters((prev) => prev - 1)
+              setRemainingLetters(prev => prev - 1)
             }
           }
         } else {
@@ -73,55 +89,32 @@ const App = () => {
     }
   }
 
-  useEffect(() => {
-    setAnswerArray(randomWord.map((i) => i = '_ '))
-    setRemainingLetters(randomWord.length)
-    setUsedLetters('')
-    setRemainingMiss(MAX_MISS)
-    setLoss(false)
-    setWin(false)
-    setAnswer('')
-  }, [randomWord])
-
   const startNewGame = () => {
+    if (win) {
+      setGamePoints(prev => prev + 1)
+    }
     setRandomWord(getRandomWord())
   }
 
-  useEffect(() => {
-    remainingMiss === 0 && setLoss(true)
-    remainingLetters === 0 && setWin(true)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [remainingMiss, remainingLetters])
-  
+
   return (
     <div className={styles.container}>
-      <h1>Виселица!</h1>
-      <Sheet miss={remainingMiss}/>
-      <div className={styles.remaining_letters}>Осталось отгадать: {remainingLetters}</div>
-
-      {/* _________для тестов */}
-      <div>{randomWord}</div>
-      {/* _________для тестов */}
-
-      
-      <div className={styles.answer_field}>
-        {answerArray.map((letter, index) => (
-          <div key={index}>
-            <Cell letter={letter}/>
-          </div>
-        ))}
-      </div>
-      
-      <div>Использованные буквы: {usedLetters}</div>
-
-      <form onSubmit={onConfirm} className={styles.bottom}>
-        <InputText value={answer} maxLength={1} onChange={onChange} disabled={(loss || win) ? true : false }/>
-        <Button type="submit" description={'Проверить'}/>
-      </form>
-      <div>Промохов осталось: {remainingMiss} из {MAX_MISS}</div>
-      <Button type="button" description="Новое слово" onClick={startNewGame}/>
-      {loss && <h1>ПОРАЖЕНИЕ</h1>}
-      {win && <h1>ПОБЕДА!!</h1>}
+      {!startGame && <StartScreen onClick={() => setStartGame(true)}/>}
+      {startGame && <GameScreen
+        remainingMiss={remainingMiss}
+        remainingLetters={remainingLetters}
+        randomWord={randomWord} 
+        answerArray={answerArray}
+        usedLetters={usedLetters}
+        onConfirm={onConfirm}
+        onChange={onChange}
+        answer={answer}
+        loss={loss}
+        win={win}
+        gamePoints={gamePoints}
+        MAX_MISS={MAX_MISS}
+        startNewGame={startNewGame}
+      />}
     </div>
   );
 }

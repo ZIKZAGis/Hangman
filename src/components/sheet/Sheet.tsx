@@ -5,10 +5,10 @@ import { SheetPropsType } from '../../types/types'
 const Sheet = ({miss}: SheetPropsType) => {
     return (
         <div className={styles.wrapper}>
-            <div className={miss <= 10 ? styles.line_1 : ''}/>
-            <div className={miss <= 9 ? styles.line_2 : ''}/>
-            <div className={miss <= 8 ? styles.line_3 : ''}/>
-            <div className={miss <= 7 ? styles.line_4 : ''}/>
+            <div className={styles.line_1}/>
+            <div className={styles.line_2}/>
+            <div className={styles.line_3}/>
+            <div className={styles.line_4}/>
             <div className={miss <= 6 ? styles.line_5 : ''}/>
             <div className={miss <= 3 ? styles.line_6 : ''}/>
             <div className={miss <= 2 ? styles.line_7 : ''}/>

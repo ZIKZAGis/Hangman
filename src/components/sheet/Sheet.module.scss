@@ -1,3 +1,5 @@
+@import 'src/variables';
+
 .wrapper {
     position: relative;
     border: 2px solid blue;
@@ -5,10 +7,6 @@
     width: 500px;
     height: 500px;
     margin: 0 auto 30px auto;
-    background-image: url('./../../media/sheet_bg.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 102%;
 
     div {
         position: absolute;
@@ -24,6 +22,7 @@
 .line_7,
 .line_8,
 .line_9 {
+    transition: $animation;
     background-color: black;
     border-radius: 2px;
 }
@@ -103,6 +102,7 @@
     height: 10%;
     border: 4px solid black;
     border-radius: 50%;
+    transition: $animation;
 }
 
 .oval {
@@ -112,5 +112,6 @@
     height: 20%;
     border: 4px solid black;
     border-radius: 50%;
+    transition: $animation;
 }
 
