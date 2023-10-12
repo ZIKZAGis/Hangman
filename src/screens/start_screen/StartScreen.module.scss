@@ -11,7 +11,7 @@
         font-size: 100px;
         margin: 0;
         text-transform: uppercase;
-        color: #261ac8;
+        color: $blue;
     }
 
     img {
@@ -33,15 +33,15 @@
 
         svg path {
             transition: $animation;
-            stroke: #ef5347;
-            fill: #261ac8;
+            stroke: $red;
+            fill: $blue;
         }
 
         &:hover svg path,
         &:focus svg path,
         &:active svg path {
-            stroke: darken(#ef5347, 8);
-            fill: darken(#261ac8, 8);
+            stroke: $active_red;
+            fill: $active_blue;
             stroke-width: 2.5;
         }
     }

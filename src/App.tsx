@@ -2,35 +2,7 @@ import { useEffect, useState } from "react";
 import StartScreen from "./screens/start_screen/StartScreen";
 import styles from "./App.module.scss"
 import GameScreen from "./screens/game_screen/GameScreen";
-
-const wordsArray = [
-  "Программа",
-  "макака",
-  "прекрасный",
-  "оладушек",
-  "компьютер",
-  "автомобиль",
-  "галлерея",
-  "оптимизация",
-  "винишко",
-  "музыка",
-  "обладатель",
-  "планетарный",
-  "Коновал",
-  "Склочник",
-  "Своевременный",
-  "Проявить",
-  "Лукавый",
-  "Расщедриться",
-  "Большак",
-  "Тронуться",
-  "Поклевать",
-  "Голубчик",
-  "Разукомплектовать",
-  "Панты",
-  "Болезненный",
-  "Циркорама",
-];
+import { wordsArray } from "./data/dataArrays";
 
 const MAX_MISS = 7
 const getRandomWord = () => Array.from(wordsArray[Math.floor(Math.random() * wordsArray.length)].toLowerCase())

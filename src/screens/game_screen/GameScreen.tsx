@@ -3,6 +3,9 @@ import Sheet from '../../components/sheet/Sheet'
 import Button from '../../components/button/Button'
 import InputText from '../../components/input_text/InputText'
 import Cell from '../../components/cell/Cell'
+import {BsPauseCircleFill} from 'react-icons/bs'
+import { useState } from 'react'
+import PopUpPause from '../../components/pop_up_pause/PopUpPause'
 
 type PropsType = {
     remainingMiss: number
@@ -20,9 +23,39 @@ type PropsType = {
     MAX_MISS: number
 }
 
-const GameScreen = ({remainingMiss, remainingLetters, randomWord, answerArray, usedLetters, onConfirm, onChange, answer, loss, win, gamePoints, MAX_MISS, startNewGame}: PropsType) => {
+const GameScreen = ({
+    remainingMiss,
+    remainingLetters,
+    randomWord,
+    answerArray,
+    usedLetters,
+    onConfirm,
+    onChange,
+    answer,
+    loss,
+    win,
+    gamePoints,
+    MAX_MISS,
+    startNewGame
+}: PropsType) => {
+    const [pause, setPause] = useState(false)
+
+    const goHomeHandler = () => {
+        console.log('go home')
+    }
+
+    const newWordHandler = () => {
+        console.log('new word')
+    }
+
     return (
         <div className={styles.container}>
+            <PopUpPause state={pause} goHome={goHomeHandler} newWord={newWordHandler} close={() => setPause(false)}/>
+            <div className={styles.pause_button_wrapper}>
+                <Button onClick={() => setPause(true)} disabled={pause}>
+                    <BsPauseCircleFill/>
+                </Button>
+            </div>
             <Sheet miss={remainingMiss}/>
             <div className={styles.remaining_letters}>Осталось отгадать: {remainingLetters}</div>
 
