@@ -6,11 +6,11 @@ import {FaRepeat} from "react-icons/fa6"
 type PropsType = {
     state: boolean
     goHome: () => void
-    newWord: () => void
+    reset: () => void
     close: () => void
 }
 
-const PopUpPause = ({state, goHome, newWord, close}: PropsType) => {
+const PopUpPause = ({state, goHome, reset, close}: PropsType) => {
     return (
         <div className={`${styles.wrapper } ${state && styles.open}`}>
             <div className={styles.close}>
@@ -25,7 +25,7 @@ const PopUpPause = ({state, goHome, newWord, close}: PropsType) => {
                 <Button onClick={goHome}>
                     <AiFillHome/>
                 </Button>
-                <Button onClick={newWord}>
+                <Button onClick={reset}>
                     <FaRepeat/>
                 </Button>
             </div>
