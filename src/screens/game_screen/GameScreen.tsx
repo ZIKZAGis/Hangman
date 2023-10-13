@@ -1,12 +1,12 @@
 import styles from './GameScreen.module.scss'
 import Sheet from '../../components/sheet/Sheet'
 import Button from '../../components/button/Button'
-import InputText from '../../components/input_text/InputText'
 import {BsFillPauseBtnFill} from 'react-icons/bs'
 import { useState, useEffect } from 'react'
 import PopUpPause from '../../components/pop_up_pause/PopUpPause'
 import { wordsArray } from '../../data/dataArrays'
 import AnswerField from '../../components/answer_field/AnswerField'
+import Keyboard from '../../components/Keyboard/Keyboard'
 
 type PropsType = {
     toggleStart: () => void
@@ -19,70 +19,71 @@ const GameScreen = ({toggleStart}: PropsType) => {
     const [remainingLetters, setRemainingLetters] = useState(randomWord.length)
     const [remainingMiss, setRemainingMiss] = useState(MAX_MISS)
     const [answerArray, setAnswerArray] = useState(randomWord.map((i) => i = '_ '))
-    const [usedLetters, setUsedLetters] = useState('')
+    // const [usedLetters, setUsedLetters] = useState('')
     const [answer, setAnswer] = useState('')
     const [gamePoints, setGamePoints] = useState(0)
     const [win, setWin] = useState(false)
     const [loss, setLoss] = useState(false)
     const [pause, setPause] = useState(false)
-  
-    useEffect(() => {
+
+    const resetAnswer = () => {
       setAnswerArray(randomWord.map((i) => i = '_ '))
       setRemainingLetters(randomWord.length)
-      setUsedLetters('')
+      // setUsedLetters('')
       setRemainingMiss(MAX_MISS)
       setLoss(false)
       setWin(false)
+      setPause(false)
       setAnswer('')
-    }, [randomWord])
+    }
   
+    useEffect(() => {
+      resetAnswer()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [randomWord])
+
     useEffect(() => {
       remainingMiss === 0 && setLoss(true)
       remainingLetters === 0 && setWin(true)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [remainingMiss, remainingLetters])
     
-    const onChange = (e: React.SyntheticEvent<HTMLInputElement>) => {
-      setAnswer(e.currentTarget.value)
-    }
-  
-    const onConfirm = (e: React.SyntheticEvent<HTMLFormElement>) => {
-      e.preventDefault()
-      if (answer.length !== 1) {
-        alert('Пожалуйста введите одну букву')
-      } else if (usedLetters.includes(answer)) {
-        alert('буква уже использована')
+    const onClickLatter = (e: React.SyntheticEvent<HTMLButtonElement>) => {
+      setAnswer(e.currentTarget.id)
+      e.currentTarget.disabled = true
+
+      if (randomWord.includes(e.currentTarget.id)) {
+        e.currentTarget.style.color = 'green'
       } else {
-          setUsedLetters((prev) => prev + ` ${answer}`)
-          if (randomWord.join('').indexOf(answer.toLowerCase()) >= 0) {
-            for (let j = 0; j < randomWord.length; j++) {
-              if (randomWord[j] === answer.toLowerCase()) {
-                answerArray[j] = answer.toLowerCase() + ' '
-                setRemainingLetters(prev => prev - 1)
-              }
-            }
-          } else {
-            setRemainingMiss(remainingMiss - 1)
-          }
-        setAnswer('')
+        e.currentTarget.style.color = 'red'
       }
     }
+
+    useEffect(() => {
+      // setUsedLetters((prev) => prev + ` ${answer}`)
+      if (randomWord.join('').indexOf(answer.toLowerCase()) >= 0) {
+        for (let j = 0; j < randomWord.length; j++) {
+          if (randomWord[j] === answer.toLowerCase()) {
+            answerArray[j] = answer.toLowerCase() + ' '
+            setRemainingLetters(prev => prev - 1)
+          }
+        }
+      } else {
+        setRemainingMiss(remainingMiss - 1)
+      }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [answer])
   
-    const startNewGame = () => {
+    const getNextWord = () => {
       if (win) {
         setGamePoints(prev => prev + 1)
       }
       setRandomWord(getRandomWord())
     }
 
-
-    const resetAnswerHandler = () => {
-        console.log('new word')
-    }
-
     return (
         <div className={styles.container}>
-            <PopUpPause state={pause} goHome={toggleStart} reset={resetAnswerHandler} close={() => setPause(false)}/>
+            <PopUpPause state={pause} goHome={toggleStart} reset={resetAnswer} close={() => setPause(false)}/>
             <div>Отгаданных слов: {gamePoints}</div>
             <div className={styles.pause_button_wrapper}>
                 <Button onClick={() => setPause(true)} disabled={pause}>
@@ -95,16 +96,14 @@ const GameScreen = ({toggleStart}: PropsType) => {
 
             {/* _________для тестов */}
             <div>{randomWord}</div>
+            <div>Промохов осталось: {remainingMiss} из {MAX_MISS}</div>
             {/* _________для тестов */}
 
-            <div>Использованные буквы: {usedLetters}</div>
+            {/* <div>Использованные буквы: {usedLetters}</div> */}
 
-            <form onSubmit={onConfirm} className={styles.bottom}>
-                <InputText value={answer} maxLength={1} onChange={onChange} disabled={(loss || win) ? true : false }/>
-                <Button type="submit" description={'Проверить'}/>
-            </form>
-            <div>Промохов осталось: {remainingMiss} из {MAX_MISS}</div>
-            <Button type="button" description="Новое слово" onClick={startNewGame}/>
+            <Keyboard click={onClickLatter}/>
+            
+            <Button type="button" description="Новое слово" onClick={getNextWord}/>
             {loss && <h1>ПОРАЖЕНИЕ</h1>}
             {win && <h1>ПОБЕДА!!</h1>}
         </div>
