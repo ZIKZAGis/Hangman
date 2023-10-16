@@ -7,6 +7,8 @@ import PopUpPause from '../../components/pop_up_pause/PopUpPause'
 import { wordsArray } from '../../data/dataArrays'
 import AnswerField from '../../components/answer_field/AnswerField'
 import Keyboard from '../../components/Keyboard/Keyboard'
+import PopUpEndGame from '../../components/pop_up_end_game/PopUpEndGame'
+
 
 type PropsType = {
     toggleStart: () => void
@@ -19,8 +21,9 @@ const GameScreen = ({toggleStart}: PropsType) => {
     const [remainingLetters, setRemainingLetters] = useState(randomWord.length)
     const [remainingMiss, setRemainingMiss] = useState(MAX_MISS)
     const [answerArray, setAnswerArray] = useState(randomWord.map((i) => i = '_ '))
-    // const [usedLetters, setUsedLetters] = useState('')
+    const [usedLetters, setUsedLetters] = useState('')
     const [answer, setAnswer] = useState('')
+    const [level, setLevel] = useState(1)
     const [gamePoints, setGamePoints] = useState(0)
     const [win, setWin] = useState(false)
     const [loss, setLoss] = useState(false)
@@ -29,7 +32,7 @@ const GameScreen = ({toggleStart}: PropsType) => {
     const resetAnswer = () => {
       setAnswerArray(randomWord.map((i) => i = '_ '))
       setRemainingLetters(randomWord.length)
-      // setUsedLetters('')
+      setUsedLetters('')
       setRemainingMiss(MAX_MISS)
       setLoss(false)
       setWin(false)
@@ -43,10 +46,17 @@ const GameScreen = ({toggleStart}: PropsType) => {
     }, [randomWord])
 
     useEffect(() => {
-      remainingMiss === 0 && setLoss(true)
+       if (remainingMiss === 0) {
+        setLoss(true)
+       }
       remainingLetters === 0 && setWin(true)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [remainingMiss, remainingLetters])
+
+    useEffect(() => {
+      win && setGamePoints(prev => prev + 10)
+      loss && setGamePoints(prev => prev - 5)
+    }, [loss, win])
     
     const onClickLatter = (e: React.SyntheticEvent<HTMLButtonElement>) => {
       setAnswer(e.currentTarget.id)
@@ -60,12 +70,13 @@ const GameScreen = ({toggleStart}: PropsType) => {
     }
 
     useEffect(() => {
-      // setUsedLetters((prev) => prev + ` ${answer}`)
+      setUsedLetters((prev) => prev + ` ${answer}`)
       if (randomWord.join('').indexOf(answer.toLowerCase()) >= 0) {
         for (let j = 0; j < randomWord.length; j++) {
           if (randomWord[j] === answer.toLowerCase()) {
             answerArray[j] = answer.toLowerCase() + ' '
             setRemainingLetters(prev => prev - 1)
+            setGamePoints(prev => prev + 5)
           }
         }
       } else {
@@ -76,7 +87,7 @@ const GameScreen = ({toggleStart}: PropsType) => {
   
     const getNextWord = () => {
       if (win) {
-        setGamePoints(prev => prev + 1)
+        setLevel(prev => prev + 1)
       }
       setRandomWord(getRandomWord())
     }
@@ -84,7 +95,8 @@ const GameScreen = ({toggleStart}: PropsType) => {
     return (
         <div className={styles.container}>
             <PopUpPause state={pause} goHome={toggleStart} reset={resetAnswer} close={() => setPause(false)}/>
-            <div>Отгаданных слов: {gamePoints}</div>
+            <div>Очки: {gamePoints}</div>
+            <div>Уровень: {level}</div>
             <div className={styles.pause_button_wrapper}>
                 <Button onClick={() => setPause(true)} disabled={pause}>
                     <BsFillPauseBtnFill/>
@@ -92,20 +104,30 @@ const GameScreen = ({toggleStart}: PropsType) => {
             </div>
             <AnswerField arr={answerArray}/>  
             <Sheet miss={remainingMiss}/>
-            <div className={styles.remaining_letters}>букв осталось отгадать: {remainingLetters}</div>
+
 
             {/* _________для тестов */}
-            <div>{randomWord}</div>
-            <div>Промохов осталось: {remainingMiss} из {MAX_MISS}</div>
+            <div style={{position: 'absolute', left: '0', top: '10px', fontWeight: 'bold', color: 'green'}}>{randomWord}</div>
+            <div style={{position: 'absolute', left: '0', top: '40px', fontWeight: 'bold', color: 'red'}}>Промохов осталось: {remainingMiss} из {MAX_MISS}</div>
+            <div style={{position: 'absolute', left: '0', top: '70px', fontWeight: 'bold', color: 'red'}}>Использованные буквы: {usedLetters}</div>
+            <div style={{position: 'absolute', left: '0', top: '100px', fontWeight: 'bold', color: 'red'}}>букв осталось отгадать: {remainingLetters}</div>
             {/* _________для тестов */}
 
-            {/* <div>Использованные буквы: {usedLetters}</div> */}
-
+          
             <Keyboard click={onClickLatter}/>
             
             <Button type="button" description="Новое слово" onClick={getNextWord}/>
-            {loss && <h1>ПОРАЖЕНИЕ</h1>}
-            {win && <h1>ПОБЕДА!!</h1>}
+
+            {(win || loss) && <PopUpEndGame 
+                goHome={toggleStart} 
+                reset={resetAnswer} 
+                nexWord={getNextWord} 
+                win={win} 
+                loss={loss} 
+                gamePoints={gamePoints} 
+                wordsGuessed={level}/>
+            }
+
         </div>
     )
 }
