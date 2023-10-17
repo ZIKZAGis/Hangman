@@ -1,11 +1,46 @@
 @import 'src/variables';
 
+.container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(blue, 0.5);
+    z-index: 2;
+}
+
 .wrapper {
     height: fit-content;
     position: absolute;
-    bottom: 20px;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
-    width: 30%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    padding: 30px;
+    border-radius: inherit;
     background-color: $red;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+
+    h2 {
+        margin: 0 10px 0 0;
+        font-size: 40px;
+    }
+
+    svg {
+        font-size: 40px;
+    }
+}
+
+.result {
+    svg {
+        font-size: 40px;
+    }
 }
