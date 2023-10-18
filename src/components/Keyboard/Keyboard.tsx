@@ -7,7 +7,7 @@ type PropsType = {
 
 const Keyboard = ({click}: PropsType) => {
     return (
-        <div className={styles.wrapper}>
+        <div className={styles.wrapper} id="keyboard">
             {lettersArray.map((letter, index) => (
                 <button type="button" key={index} id={letter} onClick={click}>{letter}</button>
             ))}

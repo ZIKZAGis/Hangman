@@ -28,6 +28,16 @@ const GameScreen = ({toggleStart}: PropsType) => {
     const [win, setWin] = useState(false)
     const [loss, setLoss] = useState(false)
     const [pause, setPause] = useState(false)
+    const buttons = document.getElementById('keyboard')?.querySelectorAll('button')
+
+    const clearDisabled = () => {
+      if (buttons) {
+        buttons.forEach((button) => {
+          button.disabled = false
+          button.style.color = "#3786be"
+        })
+      }
+    }
 
     const resetAnswer = () => {
       setAnswerArray(randomWord.map((i) => i = '_ '))
@@ -38,7 +48,17 @@ const GameScreen = ({toggleStart}: PropsType) => {
       setWin(false)
       setPause(false)
       setAnswer('')
+      clearDisabled()
     }
+
+    const getNextWord = () => {
+      if (win) {
+        setLevel(prev => prev + 1)
+      }
+      clearDisabled()
+      setRandomWord(getRandomWord())
+    }
+
   
     useEffect(() => {
       resetAnswer()
@@ -85,13 +105,6 @@ const GameScreen = ({toggleStart}: PropsType) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [answer])
   
-    const getNextWord = () => {
-      if (win) {
-        setLevel(prev => prev + 1)
-      }
-      setRandomWord(getRandomWord())
-    }
-
     return (
         <div className={styles.container}>
             <PopUpPause state={pause} goHome={toggleStart} reset={resetAnswer} close={() => setPause(false)}/>
