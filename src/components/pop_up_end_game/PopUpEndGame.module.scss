@@ -40,7 +40,43 @@
 }
 
 .result {
+    font-size: 24px;
+
+    p {
+        margin: 0 0 10px;
+    }
+
     svg {
         font-size: 40px;
+    }
+
+    span {
+        font-weight: bold;
+    }
+}
+
+.bottom {
+    display: flex;
+    justify-content: space-around;
+
+    button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80px;
+        height: 80px;
+        font-size: 60px;
+        cursor: pointer;
+        transition: $animation;
+        opacity: 0.6;
+        background-color: transparent;
+        border: none;
+
+        &:hover,
+        &:focus
+        &:active {
+            opacity: 1;
+            font-size: 65px;
+        }
     }
 }

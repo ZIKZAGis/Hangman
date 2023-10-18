@@ -33,10 +33,10 @@ const PopUpEndGame = ({goHome, reset, nexWord, win, loss, gamePoints, wordsGuess
                 }
                 <div className={styles.result}>
                     <PiBrainBold/>
-                    <p>Набрано очков: {gamePoints}</p>
-                    <p>Слов Отгадано: {wordsGuessed - 1}</p>
+                    <p>Набрано очков: <span>{gamePoints}</span></p>
+                    <p>Слов Отгадано: <span>{wordsGuessed - 1}</span></p>
                 </div>
-                <div>
+                <div className={styles.bottom}>
                     <Button onClick={goHome}>
                         <AiFillHome/>
                     </Button>
