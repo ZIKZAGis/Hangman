@@ -17,7 +17,7 @@ type PropsType = {
 
 const PopUpEndGame = ({goHome, reset, nexWord, win, loss, gamePoints, wordsGuessed}: PropsType) => {
     return (
-        <div className={styles.container}>
+        <div className={`${styles.container} ${(win || loss) && styles.open}`}>
             <div className={styles.wrapper} style={{backgroundColor: `${win && 'green'}`}}>
                 {win &&
                     <div className={styles.title}>

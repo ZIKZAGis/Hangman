@@ -2,13 +2,22 @@
 
 .container {
     position: absolute;
+    bottom: 0;
     left: 0;
-    top: 0;
-    border-radius: 20px;
+    width: 0;
+    height: 0;
+    z-index: -1;
+    transition: $animation;
+    transform: scale(0);
+    background-color: transparent;
+}
+
+.open {
     width: 100%;
     height: 100%;
-    background-color: rgba(blue, 0.5);
-    z-index: 2;
+    z-index: 1;
+    transform: scale(1);
+    background-color: rgba(wheat, 0.2);
 }
 
 .wrapper {
@@ -19,7 +28,7 @@
     transform: translate(-50%, -50%);
     width: 40%;
     padding: 30px;
-    border-radius: inherit;
+    border-radius: 20px;
     background-color: $red;
 }
 

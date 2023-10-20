@@ -1,0 +1,23 @@
+@import "src/variables";
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: fit-content;
+    color: yellow;
+    font-size: 48px;
+
+    svg {
+        color: orange;
+        margin-right: 10px;
+    }
+
+    p {
+        font-weight: bold;
+        color: $blue;
+        margin: 0;
+    }
+}

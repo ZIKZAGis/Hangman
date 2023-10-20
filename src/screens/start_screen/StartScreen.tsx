@@ -5,11 +5,12 @@ import pencil from "./../../media/pencil.png"
 
 type PropsType = {
     onClick: () => void
+    gameIsStart: boolean
 }
 
-const StartScreen = ({onClick}: PropsType) => {
+const StartScreen = ({onClick, gameIsStart}: PropsType) => {
     return (
-        <div className={styles.wrapper}>
+        <div className={`${styles.wrapper} ${!gameIsStart && styles.open}`}>
             <h1>Виселица!</h1>
             <img src={pencil} alt="карандаш"/>
             <Button onClick={onClick}>

@@ -20,3 +20,15 @@ export type CellPropsType = {
 export type SheetPropsType = {
     miss: number
 }
+
+export type GameScreenPropsType = {
+    toggleStart: () => void
+    gameIsStart: boolean
+}
+
+export type PopUpPausePropsType = {
+    state: boolean
+    goHome: () => void
+    reset: () => void
+    close: () => void
+}
