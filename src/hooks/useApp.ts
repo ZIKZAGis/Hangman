@@ -10,6 +10,7 @@ export const useApp = () => {
     const [answerArray, setAnswerArray] = useState(randomWord.map((i) => i = '_ '))
     const [answer, setAnswer] = useState('')
     const [level, setLevel] = useState(1)
+    const [wordsGuessed, setWordGuessed] = useState(0)
     const [gamePoints, setGamePoints] = useState(0)
     const [levelPoints, setLevelPoints] = useState(0)
     const [win, setWin] = useState(false)
@@ -65,10 +66,9 @@ export const useApp = () => {
     }, [remainingMiss, remainingLetters])
 
     useEffect(() => {
-      if (win) {
-        setGamePoints(prev => prev + 10)
-        setLevelPoints(gamePoints + 10)
-      }
+      win && setWordGuessed(prev => prev + 1)
+      win && setGamePoints(prev => prev + 10)
+      win && setLevelPoints(gamePoints + 10)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [win])
     
@@ -114,6 +114,7 @@ export const useApp = () => {
         win,
         loss,
         getNextWord,
-        togglePause
+        togglePause,
+        wordsGuessed
     }
 }

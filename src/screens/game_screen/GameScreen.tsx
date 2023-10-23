@@ -26,7 +26,8 @@ const GameScreen = ({toggleStart, gameIsStart}: GameScreenPropsType) => {
     win,
     loss,
     getNextWord,
-    togglePause
+    togglePause,
+    wordsGuessed
   } = useApp()
 
   const goHome = () => {
@@ -66,7 +67,7 @@ const GameScreen = ({toggleStart, gameIsStart}: GameScreenPropsType) => {
             win={win} 
             loss={loss} 
             gamePoints={gamePoints} 
-            wordsGuessed={level}
+            wordsGuessed={wordsGuessed}
           />
         </div>
     )
