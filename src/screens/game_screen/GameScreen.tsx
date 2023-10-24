@@ -40,7 +40,6 @@ const GameScreen = ({toggleStart, gameIsStart}: GameScreenPropsType) => {
           <PopUpPause state={pause} goHome={goHome} reset={resetAnswer} close={togglePause}/>
           <GamePoints gamePoints={gamePoints}/>
           <div>Уровень: {level}</div>
-          <div>Подсказка</div>
           <div className={styles.pause_button_wrapper}>
               <Button onClick={togglePause} disabled={pause}>
                   <BsPauseCircleFill/>
@@ -50,11 +49,11 @@ const GameScreen = ({toggleStart, gameIsStart}: GameScreenPropsType) => {
           <AnswerField arr={answerArray}/>  
 
           {/* _________для тестов */}
-          <div style={{position: 'absolute', left: '0', bottom: '130px', fontWeight: 'bold', color: 'green'}}>{randomWord}</div>
-          <div style={{position: 'absolute', left: '0', bottom: '100px', fontWeight: 'bold', color: 'red'}}>Очков уровня: {levelPoints}</div>
-          <div style={{position: 'absolute', left: '0', bottom: '40px', fontWeight: 'bold', color: 'red'}}>Промохов осталось: {remainingMiss} из {MAX_MISS}</div>
-          <div style={{position: 'absolute', left: '0', bottom: '70px', fontWeight: 'bold', color: 'red'}}>букв осталось отгадать: {remainingLetters}</div>
-          <div style={{position: 'absolute', left: '0', bottom: '10px'}}>
+          <div style={{position: 'absolute', left: '10px', bottom: '130px', fontWeight: 'bold', color: 'green'}}>{randomWord}</div>
+          <div style={{position: 'absolute', left: '10px', bottom: '100px', fontWeight: 'bold', color: 'red'}}>Очков уровня: {levelPoints}</div>
+          <div style={{position: 'absolute', left: '10px', bottom: '40px', fontWeight: 'bold', color: 'red'}}>Промохов осталось: {remainingMiss} из {MAX_MISS}</div>
+          <div style={{position: 'absolute', left: '10px', bottom: '70px', fontWeight: 'bold', color: 'red'}}>букв осталось отгадать: {remainingLetters}</div>
+          <div style={{position: 'absolute', left: '10px', bottom: '10px'}}>
             <Button type="button" description="Новое слово" onClick={getNextWord}/>
           </div>
           {/* _________для тестов */}
