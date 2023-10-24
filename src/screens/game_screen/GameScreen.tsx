@@ -27,7 +27,8 @@ const GameScreen = ({toggleStart, gameIsStart}: GameScreenPropsType) => {
     loss,
     getNextWord,
     togglePause,
-    wordsGuessed
+    wordsGuessed,
+    startNewGame
   } = useApp()
 
   const goHome = () => {
@@ -37,7 +38,12 @@ const GameScreen = ({toggleStart, gameIsStart}: GameScreenPropsType) => {
 
     return (
         <div className={`${styles.container} ${gameIsStart && styles.open}`}>
-          <PopUpPause state={pause} goHome={goHome} reset={resetAnswer} close={togglePause}/>
+          <PopUpPause 
+            state={pause} 
+            goHome={goHome} 
+            reset={resetAnswer} 
+            close={togglePause}
+          />
           <GamePoints gamePoints={gamePoints}/>
           <div>Уровень: {level}</div>
           <div className={styles.pause_button_wrapper}>
@@ -49,6 +55,9 @@ const GameScreen = ({toggleStart, gameIsStart}: GameScreenPropsType) => {
           <AnswerField arr={answerArray}/>  
 
           {/* _________для тестов */}
+          <div style={{position: 'absolute', left: '10px', bottom: '160px'}}>
+            <Button type="button" description="Новая Игра" onClick={startNewGame}/>
+          </div>
           <div style={{position: 'absolute', left: '10px', bottom: '130px', fontWeight: 'bold', color: 'green'}}>{randomWord}</div>
           <div style={{position: 'absolute', left: '10px', bottom: '100px', fontWeight: 'bold', color: 'red'}}>Очков уровня: {levelPoints}</div>
           <div style={{position: 'absolute', left: '10px', bottom: '40px', fontWeight: 'bold', color: 'red'}}>Промохов осталось: {remainingMiss} из {MAX_MISS}</div>
@@ -59,8 +68,13 @@ const GameScreen = ({toggleStart, gameIsStart}: GameScreenPropsType) => {
           {/* _________для тестов */}
 
           <Keyboard click={onClickLatter}/>
+          <div className={styles.reset_result}>
+            <Button onClick={startNewGame}>
+              Заново
+            </Button>
+          </div>
           <PopUpEndGame 
-            goHome={toggleStart} 
+            goHome={goHome} 
             reset={resetAnswer} 
             nexWord={getNextWord} 
             win={win} 

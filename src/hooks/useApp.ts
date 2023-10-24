@@ -99,9 +99,19 @@ export const useApp = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [answer])
 
+    const startNewGame = () => {
+      setLevel(1)
+      setLevelPoints(0)
+      setWordGuessed(0)
+      setGamePoints(0)
+      getNextWord()
+      resetAnswer()
+    }
+
     return {
         pause,
         resetAnswer,
+        startNewGame,
         gamePoints,
         level,
         remainingMiss,
