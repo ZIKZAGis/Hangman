@@ -19,9 +19,6 @@ const GameScreen = ({toggleStart, gameIsStart}: GameScreenPropsType) => {
     remainingMiss,
     answerArray,
     randomWord,
-    levelPoints,
-    MAX_MISS,
-    remainingLetters,
     onClickLatter,
     win,
     loss,
@@ -43,6 +40,7 @@ const GameScreen = ({toggleStart, gameIsStart}: GameScreenPropsType) => {
             goHome={goHome} 
             reset={resetAnswer} 
             close={togglePause}
+            newGame={startNewGame}
           />
           <GamePoints gamePoints={gamePoints}/>
           <div>Уровень: {level}</div>
@@ -59,24 +57,17 @@ const GameScreen = ({toggleStart, gameIsStart}: GameScreenPropsType) => {
             <Button type="button" description="Новая Игра" onClick={startNewGame}/>
           </div>
           <div style={{position: 'absolute', left: '10px', bottom: '130px', fontWeight: 'bold', color: 'green'}}>{randomWord}</div>
-          <div style={{position: 'absolute', left: '10px', bottom: '100px', fontWeight: 'bold', color: 'red'}}>Очков уровня: {levelPoints}</div>
-          <div style={{position: 'absolute', left: '10px', bottom: '40px', fontWeight: 'bold', color: 'red'}}>Промохов осталось: {remainingMiss} из {MAX_MISS}</div>
-          <div style={{position: 'absolute', left: '10px', bottom: '70px', fontWeight: 'bold', color: 'red'}}>букв осталось отгадать: {remainingLetters}</div>
           <div style={{position: 'absolute', left: '10px', bottom: '10px'}}>
             <Button type="button" description="Новое слово" onClick={getNextWord}/>
           </div>
           {/* _________для тестов */}
 
           <Keyboard click={onClickLatter}/>
-          <div className={styles.reset_result}>
-            <Button onClick={startNewGame}>
-              Заново
-            </Button>
-          </div>
           <PopUpEndGame 
             goHome={goHome} 
             reset={resetAnswer} 
             nexWord={getNextWord} 
+            newGame={startNewGame}
             win={win} 
             loss={loss} 
             gamePoints={gamePoints} 

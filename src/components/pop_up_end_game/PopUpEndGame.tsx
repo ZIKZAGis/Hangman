@@ -4,18 +4,9 @@ import {AiFillHome} from "react-icons/ai"
 import {FaRepeat} from "react-icons/fa6"
 import {GrLinkNext} from "react-icons/gr"
 import {PiSmileyXEyesBold, PiSmileyWinkBold, PiBrainBold} from "react-icons/pi"
+import { EndGamePropsType } from "../../types/types"
 
-type PropsType = {
-    goHome: () => void
-    reset: () => void
-    nexWord: () => void
-    win: boolean
-    loss: boolean
-    gamePoints: number
-    wordsGuessed: number
-}
-
-const PopUpEndGame = ({goHome, reset, nexWord, win, loss, gamePoints, wordsGuessed}: PropsType) => {
+const PopUpEndGame = ({goHome, reset, nexWord, win, loss, gamePoints, wordsGuessed, newGame}: EndGamePropsType) => {
     return (
         <div className={`${styles.container} ${(win || loss) && styles.open}`}>
             <div className={styles.wrapper} style={{backgroundColor: `${win && 'green'}`}}>
@@ -39,6 +30,9 @@ const PopUpEndGame = ({goHome, reset, nexWord, win, loss, gamePoints, wordsGuess
                 <div className={styles.bottom}>
                     <Button onClick={goHome}>
                         <AiFillHome/>
+                    </Button>
+                    <Button onClick={newGame}>
+                        Новая Игра
                     </Button>
                     {loss && 
                         <Button onClick={reset}>

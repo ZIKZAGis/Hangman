@@ -31,4 +31,16 @@ export type PopUpPausePropsType = {
     goHome: () => void
     reset: () => void
     close: () => void
+    newGame: () => void
+}
+
+export type EndGamePropsType = {
+    goHome: () => void
+    reset: () => void
+    nexWord: () => void
+    win: boolean
+    loss: boolean
+    gamePoints: number
+    wordsGuessed: number
+    newGame: () => void
 }

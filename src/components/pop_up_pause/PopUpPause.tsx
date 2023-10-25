@@ -4,7 +4,7 @@ import {AiOutlineClose, AiFillHome} from "react-icons/ai"
 import {FaRepeat} from "react-icons/fa6"
 import { PopUpPausePropsType } from "../../types/types"
 
-const PopUpPause = ({state, goHome, reset, close}: PopUpPausePropsType) => {
+const PopUpPause = ({state, goHome, reset, close, newGame}: PopUpPausePropsType) => {
     return (
         <div className={`${styles.container} ${state && styles.open}`}>
             <div className={styles.wrapper}>
@@ -22,6 +22,9 @@ const PopUpPause = ({state, goHome, reset, close}: PopUpPausePropsType) => {
                     </Button>
                     <Button onClick={reset}>
                         <FaRepeat/>
+                    </Button>
+                    <Button onClick={newGame}>
+                        Новая Игра
                     </Button>
                 </div>
             </div>
