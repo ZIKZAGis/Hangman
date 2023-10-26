@@ -104,7 +104,8 @@ export const useApp = () => {
       setLevelPoints(0)
       setWordGuessed(0)
       setGamePoints(0)
-      getNextWord()
+      clearDisabled()
+      setRandomWord(getRandomWord())
       resetAnswer()
     }
 
@@ -120,8 +121,8 @@ export const useApp = () => {
         onClickLatter,
         win,
         loss,
-        getNextWord,
         togglePause,
-        wordsGuessed
+        getNextWord,
+        wordsGuessed,
     }
 }

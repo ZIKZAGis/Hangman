@@ -23,9 +23,11 @@ const PopUpPause = ({state, goHome, reset, close, newGame}: PopUpPausePropsType)
                     <Button onClick={reset}>
                         <FaRepeat/>
                     </Button>
-                    <Button onClick={newGame}>
-                        Новая Игра
-                    </Button>
+                    <div className={styles.new_game}>
+                        <Button onClick={newGame}>
+                            Новая Игра
+                        </Button>
+                    </div>
                 </div>
             </div>
         </div>

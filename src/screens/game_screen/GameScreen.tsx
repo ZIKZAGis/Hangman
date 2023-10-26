@@ -25,12 +25,12 @@ const GameScreen = ({toggleStart, gameIsStart}: GameScreenPropsType) => {
     getNextWord,
     togglePause,
     wordsGuessed,
-    startNewGame
+    startNewGame,
   } = useApp()
 
   const goHome = () => {
     toggleStart()
-    togglePause()
+    startNewGame()
   }
 
     return (
@@ -43,7 +43,7 @@ const GameScreen = ({toggleStart, gameIsStart}: GameScreenPropsType) => {
             newGame={startNewGame}
           />
           <GamePoints gamePoints={gamePoints}/>
-          <div>Уровень: {level}</div>
+          <div className={styles.level}>Уровень: {level}</div>
           <div className={styles.pause_button_wrapper}>
               <Button onClick={togglePause} disabled={pause}>
                   <BsPauseCircleFill/>

@@ -29,7 +29,15 @@
     width: 40%;
     padding: 30px;
     border-radius: 20px;
-    background-color: $red;
+    background-color: wheat;
+
+    &_win {
+        background-color: green;
+    }
+
+    &_loss {
+        background-color: red;
+    }
 }
 
 .title {
@@ -86,6 +94,21 @@
         &:active {
             opacity: 1;
             font-size: 65px;
+        }
+    }
+}
+
+.new_game {
+    button {
+        font-size: 18px;
+        font-weight: bold;
+        border: 2px solid black;
+        border-radius: 20px;
+
+        &:hover,
+        &:focus
+        &:active {
+            font-size: 20px;
         }
     }
 }

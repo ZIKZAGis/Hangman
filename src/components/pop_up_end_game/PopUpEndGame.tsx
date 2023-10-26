@@ -9,7 +9,7 @@ import { EndGamePropsType } from "../../types/types"
 const PopUpEndGame = ({goHome, reset, nexWord, win, loss, gamePoints, wordsGuessed, newGame}: EndGamePropsType) => {
     return (
         <div className={`${styles.container} ${(win || loss) && styles.open}`}>
-            <div className={styles.wrapper} style={{backgroundColor: `${win && 'green'}`}}>
+            <div className={`${styles.wrapper} ${win && styles.wrapper_win} ${loss && styles.wrapper_loss}`}>
                 {win &&
                     <div className={styles.title}>
                         <h2>Отличная работа!</h2>
@@ -31,9 +31,11 @@ const PopUpEndGame = ({goHome, reset, nexWord, win, loss, gamePoints, wordsGuess
                     <Button onClick={goHome}>
                         <AiFillHome/>
                     </Button>
-                    <Button onClick={newGame}>
-                        Новая Игра
-                    </Button>
+                    <div className={styles.new_game}>
+                        <Button onClick={newGame}>
+                            Новая Игра
+                        </Button>
+                    </div>
                     {loss && 
                         <Button onClick={reset}>
                             <FaRepeat/>
