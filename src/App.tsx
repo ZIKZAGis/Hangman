@@ -9,9 +9,7 @@ const App = () => {
 
   return (
     <div className={styles.container}>
-      {/* {!gameIsStart && <StartScreen onClick={startGame} gameIsStart={gameIsStart}/>} */}
       <StartScreen onClick={startGame} gameIsStart={gameIsStart}/>
-      {/* {gameIsStart && <GameScreen toggleStart={startGame} gameIsStart={gameIsStart}/>} */}
       <GameScreen toggleStart={startGame} gameIsStart={gameIsStart}/>
     </div>
   );

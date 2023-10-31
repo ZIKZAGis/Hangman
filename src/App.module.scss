@@ -4,15 +4,15 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    height: 80vh;
-    width: 95%;
+    height: 100%;
+    width: 100%;
     max-width: 1280px;
     text-align: center;
-    border: 5px solid wheat;
+    border: 5px solid #C9E1FF;
     overflow: hidden;
-    border-radius: 30px;
+    border-radius: 15px;
     background-image: url('./media/sheet_bg.jpg');
     background-repeat: repeat;
-    background-size: 80%;
+    background-size: 100%;
     background-position: center;
 }
