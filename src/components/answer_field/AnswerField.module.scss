@@ -1,7 +1,8 @@
 .wrapper {
     box-sizing: border-box;
     display: flex;
+    justify-content: space-evenly;
     margin: 0 auto;
-    width: fit-content;
-    padding: 10px;
+    width: clamp(270px, 60vw, 1000px);
+    outline: 2px solid blue;
 }

@@ -53,11 +53,11 @@ const GameScreen = ({toggleStart, gameIsStart}: GameScreenPropsType) => {
           <AnswerField arr={answerArray}/>  
 
           {/* _________для тестов */}
-          <div style={{position: 'absolute', left: '10px', bottom: '160px'}}>
+          <div style={{position: 'absolute', left: '50%', top: '0', fontSize: '8px', transform: 'translateX(-50%)'}}>
             <Button type="button" description="Новая Игра" onClick={startNewGame}/>
           </div>
-          <div style={{position: 'absolute', left: '10px', bottom: '130px', fontWeight: 'bold', color: 'green'}}>{randomWord}</div>
-          <div style={{position: 'absolute', left: '10px', bottom: '10px'}}>
+          <div style={{position: 'absolute', left: '50%', top: '35px', fontWeight: 'bold', color: 'green', fontSize: '10px', transform: 'translateX(-50%)'}}>{randomWord}</div>
+          <div style={{position: 'absolute', left: '50%', top: '20px', fontSize: '8px', transform: 'translateX(-50%)'}}>
             <Button type="button" description="Новое слово" onClick={getNextWord}/>
           </div>
           {/* _________для тестов */}

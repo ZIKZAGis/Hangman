@@ -12,7 +12,7 @@ const StartScreen = ({onClick, gameIsStart}: PropsType) => {
     return (
         <div className={`${styles.wrapper} ${!gameIsStart && styles.open}`}>
             <h1>Виселица!</h1>
-            <img src={pencil} alt="карандаш"/>
+            <img src={pencil} width={776} height={160} alt="карандаш"/>
             <Button onClick={onClick}>
                 <GrCirclePlay/>
             </Button>

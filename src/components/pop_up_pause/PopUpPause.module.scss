@@ -28,8 +28,8 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 50%;
-    height: 50%;
+    width: clamp(270px, 50vw, 500px);
+    height: clamp(270px, 50vw, 500px);
     border-radius: 20px;
     background-color: bisque;
 }
@@ -67,7 +67,7 @@
 
 .text {
     display: block;
-    font-size: 100px;
+    font-size: clamp(24px, 12vw, 90px);
     font-weight: bold;
     margin: 0;
     color: $blue;
@@ -76,6 +76,8 @@
 .bottom {
     display: flex;
     justify-content: space-around;
+    width: clamp(250px, 80%, 460px);
+    margin: 0 auto;
 
     button {
         display: flex;
