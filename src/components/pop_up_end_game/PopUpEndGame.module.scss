@@ -17,19 +17,22 @@
     height: 100%;
     z-index: 1;
     transform: scale(1);
-    background-color: rgba(wheat, 0.2);
+    background-color: rgba(white, 0.6);
 }
 
 .wrapper {
-    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 40%;
-    padding: 30px;
+    width: clamp(270px, 50vw, 500px);
+    height: clamp(270px, 50vw, 500px);
     border-radius: 20px;
-    background-color: wheat;
+    background-color: transparent;
+    padding: 10px;
 
     &_win {
         background-color: green;
@@ -44,27 +47,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 10px;
 
     h2 {
+        width: fit-content;
         margin: 0 10px 0 0;
-        font-size: 40px;
+        font-size: clamp(24px, 4vw, 30px);;
     }
 
     svg {
-        font-size: 40px;
+        font-size: clamp(24px, 7vw, 30px);;
     }
 }
 
 .result {
-    font-size: 24px;
+    font-size: clamp(24px, 5vw, 40px);
 
     p {
         margin: 0 0 10px;
     }
 
     svg {
-        font-size: 40px;
+        font-size: clamp(40px, 10vw, 60px);
     }
 
     span {
@@ -100,15 +103,13 @@
 
 .new_game {
     button {
-        font-size: 18px;
+        font-size: 20px;
         font-weight: bold;
-        border: 2px solid black;
-        border-radius: 20px;
 
         &:hover,
         &:focus
         &:active {
-            font-size: 20px;
+            font-size: 22px;
         }
     }
 }

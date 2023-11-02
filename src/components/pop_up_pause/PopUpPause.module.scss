@@ -17,7 +17,7 @@
     height: 100%;
     z-index: 1;
     transform: scale(1);
-    background-color: rgba($blue, 0.2);
+    background-color: rgba(white, 0.6);
 }
 
 .wrapper {
@@ -31,7 +31,7 @@
     width: clamp(270px, 50vw, 500px);
     height: clamp(270px, 50vw, 500px);
     border-radius: 20px;
-    background-color: bisque;
+    background-color: lighten($blue, 40);
 }
 
 .close {
@@ -83,11 +83,11 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
+        font-size: 60px;
         cursor: pointer;
         border: none;
-        font-size: 80px;
         transition: $animation;
         background-color: transparent;
 
@@ -97,7 +97,7 @@
             &:hover,
             &:focus,
             &:active {
-                font-size: 85px;
+                font-size: 65px;
                 color: $active_red;
             }
         }
@@ -108,16 +108,15 @@
             &:hover,
             &:focus,
             &:active {
-                font-size: 85px;
+                font-size: 65px;
                 color: $active_blue;
             }
         }
 
         &:last-child {
-            font-size: 18px;
+            box-sizing: border-box;
+            font-size: 20px;
             font-weight: bold;
-            border: 2px solid green;
-            border-radius: 20px;
             color: green;
             opacity: 0.7;
 
@@ -125,7 +124,7 @@
             &:focus,
             &:active {
                 color: green;
-                font-size: 20px;
+                font-size: 22px;
                 opacity: 1;
             }
         }

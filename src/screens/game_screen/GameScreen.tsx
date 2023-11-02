@@ -53,13 +53,7 @@ const GameScreen = ({toggleStart, gameIsStart}: GameScreenPropsType) => {
           <AnswerField arr={answerArray}/>  
 
           {/* _________для тестов */}
-          <div style={{position: 'absolute', left: '50%', top: '0', fontSize: '8px', transform: 'translateX(-50%)'}}>
-            <Button type="button" description="Новая Игра" onClick={startNewGame}/>
-          </div>
-          <div style={{position: 'absolute', left: '50%', top: '35px', fontWeight: 'bold', color: 'green', fontSize: '10px', transform: 'translateX(-50%)'}}>{randomWord}</div>
-          <div style={{position: 'absolute', left: '50%', top: '20px', fontSize: '8px', transform: 'translateX(-50%)'}}>
-            <Button type="button" description="Новое слово" onClick={getNextWord}/>
-          </div>
+          <div style={{position: 'absolute', left: '50%', top: '20px', fontWeight: 'bold', color: 'green', fontSize: '15px', transform: 'translateX(-50%)', opacity: '0.5'}}>{randomWord}</div>
           {/* _________для тестов */}
 
           <Keyboard click={onClickLatter}/>
