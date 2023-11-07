@@ -53,7 +53,7 @@ const GameScreen = ({toggleStart, gameIsStart}: GameScreenPropsType) => {
           <AnswerField arr={answerArray}/>  
 
           {/* _________для тестов */}
-          <div style={{position: 'absolute', left: '50%', top: '20px', fontWeight: 'bold', color: 'green', fontSize: '15px', transform: 'translateX(-50%)', opacity: '0.5'}}>{randomWord}</div>
+          <div style={{position: 'absolute', left: '50%', top: '20px', fontSize: 'clamp(18px, 4vw, 30px)', transform: 'translateX(-50%)', opacity: '0'}}>{randomWord}</div>
           {/* _________для тестов */}
 
           <Keyboard click={onClickLatter}/>

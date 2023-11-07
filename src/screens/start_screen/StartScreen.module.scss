@@ -13,6 +13,7 @@
     transition: $animation;
 
     h1 {
+        font-family: $caveat;
         font-size: clamp(30px, 12vw, 100px);
         margin: 0;
         text-transform: uppercase;

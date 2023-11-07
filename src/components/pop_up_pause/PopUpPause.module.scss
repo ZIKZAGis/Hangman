@@ -17,7 +17,7 @@
     height: 100%;
     z-index: 1;
     transform: scale(1);
-    background-color: rgba(white, 0.6);
+    background-color: rgba(white, 0.2);
 }
 
 .wrapper {
@@ -28,16 +28,19 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: clamp(270px, 50vw, 500px);
-    height: clamp(270px, 50vw, 500px);
+    width: clamp(250px, 50vw, 500px);
+    height: clamp(320px, 70vw, 700px);
     border-radius: 20px;
-    background-color: lighten($blue, 40);
+    background-image: url(../../media/scratchpad.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .close {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: -20px;
+    right: -20px;
     width: 40px;
     height: 40px;
 
@@ -74,17 +77,19 @@
 }
 
 .bottom {
+    box-sizing: border-box;
     display: flex;
     justify-content: space-around;
     width: clamp(250px, 80%, 460px);
     margin: 0 auto;
+    padding: 0 20px;
 
     button {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 80px;
-        height: 80px;
+        width: clamp(50px, 6vw, 80px);
+        height: clamp(50px, 6vw, 80px);
         font-size: 60px;
         cursor: pointer;
         border: none;
@@ -115,7 +120,7 @@
 
         &:last-child {
             box-sizing: border-box;
-            font-size: 20px;
+            font-size: clamp(16px, 3vw, 25px);
             font-weight: bold;
             color: green;
             opacity: 0.7;
@@ -124,7 +129,7 @@
             &:focus,
             &:active {
                 color: green;
-                font-size: 22px;
+                font-size: clamp(18px, 3.5vw, 27px);
                 opacity: 1;
             }
         }

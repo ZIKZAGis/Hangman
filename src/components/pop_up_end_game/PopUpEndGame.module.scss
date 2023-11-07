@@ -35,11 +35,13 @@
     padding: 10px;
 
     &_win {
-        background-color: green;
+        color: white;
+        background-color: #38DF64;
     }
 
     &_loss {
-        background-color: red;
+        color: black;
+        background-color: #FF4040;
     }
 }
 

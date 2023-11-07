@@ -12,7 +12,7 @@
         width: clamp(24.5px, 7vw, 50px);
         height: clamp(24.5px, 7vw, 50px);
         padding: 5px;
-        font-size: clamp(12px, 3.5vw, 30px);
+        font-size: clamp(18px, 5vw, 30px);
         font-weight: bold;
         text-transform: uppercase;
         color: #3786be;
@@ -24,12 +24,12 @@
         &:hover,
         &:focus,
         &:active {
-            font-size: clamp(16px, 4.5vw, 34px);
+            font-size: clamp(20px, 5.5vw, 34px);
             color: darken(#3786be, 8);
         }
 
         &:disabled {
-            font-size: clamp(12px, 3.5vw, 30px);
+            font-size: clamp(18px, 5vw, 30px);
             opacity: 0.7;
         }
     }
