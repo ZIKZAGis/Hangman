@@ -1,46 +1,38 @@
-# Getting Started with Create React App
+# Виселица (она же Hangman)
+Виселица - игра, суть ее в составлении слова из отгаданных букв.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Содержание
+- [Правила Игры](#Правила)
+- [Технологии](#Технологии)
+- [Использование](#Использование)
+- [Разработчик](#Разработчик)
 
-## Available Scripts
+## Правила Игры
+- Ваша задача - отгадать как можно больше слов. 
+- На каждое слово даётся 7 промахов, по достижению которых игра заканчивается, но с возможностью попробовать отгадать слово ещё раз, либо начать новую игру (обнулив счёт). 
+- При повторной попытке отгадать слово - очки откатываются к предыдущему значению (если, ранее уже было отгадано слово). 
+- За каждую угаданную букву начисляется 10 очков. За промах вычитается 3 очка. За угаданное слово - 10 очков. 
+- Уровень не влияет на сложность. Слова выбираются рандомно из списка. В списке 330 слов. 
+- При переходе на главный экран, счёт обнуляется. Выход на главный экран === Новая игра.
 
-In the project directory, you can run:
+## Технологии
+- [TypeScript](https://www.typescriptlang.org/)
+- [React](https://react.dev/)
+- [Sass](https://sass-lang.com/)
+- [Библиотека React-Icons](https://react-icons.github.io/react-icons/)
+
+## Использование
+
+### `npm i`
+Установка зависимостей
 
 ### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Запуск в режиме разработчика
+Открыть [http://localhost:3000](http://localhost:3000) для просмотра в браузере.
 
 ### `npm run build`
+Собрать приложение для продакта в папке `build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Разработчик
+- [Николаев Евгений](https://t.me/ZIKZAGis) - [Front-End Developer](https://hh.ru/resume/e30599bdff095a3a1b0039ed1f6132484b6c58)
