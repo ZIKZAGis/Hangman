@@ -17,7 +17,7 @@
     height: 100%;
     z-index: 1;
     transform: scale(1);
-    background-color: rgba(white, 0.2);
+    background-color: rgba(white, 0.3);
 }
 
 .wrapper {
@@ -39,8 +39,8 @@
 
 .close {
     position: absolute;
-    top: -20px;
-    right: -20px;
+    top: clamp(10px, 4.5vw, 50px);
+    right: clamp(15px, 3.5vw, 40px);
     width: 40px;
     height: 40px;
 
@@ -53,7 +53,7 @@
         cursor: pointer;
         border: none;
         padding: 0;
-        font-size: 35px;
+        font-size: clamp(18px, 4vw, 35px);
         background-color: transparent;
         border-radius: 50%;
         color: $red;
